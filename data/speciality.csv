@@ -1,0 +1,48 @@
+SPECIALITY_ID	DESCRIPTION
+31	Allergy & Immunology
+61	Anesthesiology
+91	Cardiology
+121	Cardiovascular Surgery
+151	Clinical Laboratory Sciences
+181	Clinical Neurophysiology
+211	Dermatology
+241	Emergency Medicine
+271	Endocrinology
+301	Family Medicine
+331	Family Practice
+361	Gastroenterology
+391	General Surgery
+421	Geriatrics
+451	Hematology
+481	Hepatology
+511	Infectious Diseases
+541	Intensive Care Medicine
+571	Internal Medicine
+601	Maxillofacial Surgery
+631	Nephrology
+661	Neurology
+691	Neurosurgery
+721	Obstetrics & Gynaecology
+751	Oncology
+781	Ophthalmology
+811	Orthopedic Surgery
+841	Otolaryngology (ENT)
+871	Palliative Care
+901	Pathology
+931	Pediatric Surgery
+961	Pediatrics
+991	Physical Medicine & Rehabilitation
+1021	Plastic Surgery
+1051	Primary Care
+1081	Proctology
+1111	Psychiatry
+1141	Pulmonology
+1171	Radiology
+1201	Rheumatology
+1231	Surgical Oncology
+1261	Thoracic Surgery
+1291	Transplant Surgery
+1321	Trauma Surgery
+1	UNKNOWN SPECIALTY
+1351	Urology
+1381	Vascular Surgery

@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <style>
+        .center{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        </style>
+    </head>
+    <body class="center">
+        <img src=$!url style="max-height: 100vh" alt="hdsghafdhgsd">
+    </body>
+</html>

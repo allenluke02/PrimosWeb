@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+ <head>
+    <meta charset="utf-8">
+    <title>Appointment Details</title>    
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+ <body style="padding: 20px;">
+    <p>Dear Dr. $!gmc_utils.concatIgnoreNull(" ", $!doctor.getFirstName(), $!doctor.getLastName()),</p>
+    <p>An appointment is scheduled with you. Please see the below details:</p>
+    <div>
+        <label style="min-width: 125px;" for="name">Name</label><b>:</b> <span>$!gmc_utils.concatIgnoreNull(" ", $!appointment.getPatientFistName(), $!appointment.getPatientLastName())</span><br>
+        <label style="min-width: 125px;" for="phone">Phone</label><b>:</b> <span>$!appointment.getPhone()</span><br>
+        <label style="min-width: 125px;" for="email">Email</label><b>:</b> <span>$!appointment.getEmail()</span><br>
+        <label style="min-width: 125px;" for="appointment time">Appointment On</label><b>:</b>
+         <span>
+        	<b>$!gmc_utils.formatDateTime("hh:mm aa", $!gmc_utils.formatDateTime("HH:mm", $!appointment.getStartTime()))</b> 
+         	on 
+         	<b>$!gmc_utils.formatDateTime("EEE, d MMM yyyy", $!appointment.getAppointmentDate())</b>
+         </span><br>
+        <label style="min-width: 125px;" for="name">Facility Name</label><b>:</b> <span>$!facility.getName()</span><br>
+    </div>
+</body>
+</html> 

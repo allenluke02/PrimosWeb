@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+	body{
+		font-size:18px;
+	}
+    p,
+    h4 {
+        font-size: 18px;
+        margin: 0px 0px 10px;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0px;
+        padding-left: 15px;
+    }
+
+    ul li {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    sup {
+        vertical-align: middle;
+    }
+
+    .comma span:not(:last-child):after{
+    	display:inline-block;
+    	content:',';
+    }
+      
+    
+</style>
+
+<body style="font-family:'Roboto'; margin:0px; padding: 15px 20px 10px;">
+    <div style="border-bottom: 1px solid black;">
+        <div style="display:inline-block; width:49%;">
+            <h3 style="font-size: 28px; font-weight: bold; margin: 0px 0px 10px; display: inline-block;">$!gmc_utils.concatIgnoreNull(" ", $!encounter_data.getDoctor().getFirstName(), $!encounter_data.getDoctor().getLastName())</h3>
+            <p style="text-transform:capitalize">$!address</p>
+        	#if($encounter_data.getDoctor().getAddress().getCity().getName())
+            	<p>$!encounter_data.getDoctor().getAddress().getCity().getName(), Pin-$!encounter_data.getDoctor().getAddress().getZip()</p>
+        	#end
+        </div>
+        <div style="display:inline-block; width:49%; text-align:right;">
+            <h4 style="font-weight:bold; display: inline-block;">Licence No: <span style="font-weight:normal;">$!encounter_data.getDoctor().getPracticeLicense()</span></h4>
+        </div>
+    </div>
+
+    <section style="padding-top:40px;">
+        <div style=" margin-bottom:15px;">
+            <div style="width:49%; display: inline-block;">
+                <p style="display:inline-block; font-weight:bold; ">Name : <span style="font-weight:normal;">$!gmc_utils.concatIgnoreNull(" ", $!encounter_data.getPatient().getFirstName(), $!encounter_data.getPatient().getLastName())</span></p>
+            </div>
+            <div style="width: 49%; text-align: right; display: inline-block;">
+                <p style="display: inline-block; font-weight:bold;">UHID : <span style="font-weight:normal;">$!encounter_data.getPatient().getUhid()</span></p>
+            </div>
+        </div>
+
+        <div style=" margin-bottom:15px;">
+            <div style="width: 50%; display: inline-block;">
+                <p style="display: inline-block; font-weight:bold;">Age/Sex : <span style="font-weight:normal;">$!encounter_data.getPatient().getAge / $encounter_data.getPatient().getGender()</span></p>
+            </div>
+            <div style="width: 50%; text-align:right; margin-right:20px; display: inline-block;">
+                <p style="display: inline-block; font-weight:bold; margin: 0;">Date:<span style="font-weight:normal;"> $!encounter_date</span></p>
+            </div>
+        </div>
+
+        <div style="margin-top:10px; margin-bottom:15px;">
+            <h1 style="font-size:46px; margin:0px; display: inline-block; width: 50%">&#8478;</h1>
+        </div>
+
+        <div style="margin-bottom:15px;">
+            #foreach($physicalExam in $encounter_data.getPhysicalExams())
+            <p style="display:inline-block; margin-right:30px; font-weight: bold">$physicalExam.getMetaPhysicalExam().getName() : <span style="font-weight: normal">$!physicalExam.getObservedValue()</span> $physicalExam.getMetaPhysicalExam().getUnit()</p>
+            #end
+        </div>
+
+		<ul style="margin-bottom:15px;padding:0px">
+            <li style=" margin-bottom:10px;">
+               <p style="margin-right:30px; display:inline-block; font-weight:bold;" class="comma">Complaints:  #foreach($complaint in $encounter_data.getComplaints() ) <span style="font-weight:normal;">$!complaint</span>  #end</p>
+            </li>
+        </ul>
+        
+        
+        <ul style="margin-bottom:15px;padding:0px">
+            <li style=" margin-bottom:10px;">
+               <p style="margin-right:30px; display:inline-block; font-weight:bold;" class="comma">Observations: #foreach($observation in $encounter_data.getObservations() ) <span style="font-weight:normal;">$!observation</span>  #end</p>
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h4>Medicines:</h4>
+
+        <ul style="margin-bottom:25px; padding:0px;">
+			#foreach($medicine in $encounter_data.getMedicines() )
+            <li style=" margin-bottom:5px;">
+                <p style="font-weight:bold; margin-bottom: 5px;">$!foreach.count. $!medicine.getName() <span>..................$!medicine.getDuration()</span></p>
+                <div>
+                    <p style="margin:0; margin-right:30px; display:inline-block;" class="comma">#foreach($schdl in $medicine.getSchedule()) <span>$!schdl</span>  #end</p>
+                    <p style="margin:0;margin-right:30px; display:inline-block;" class="comma">#foreach($etime in $medicine.getTime())<span>$etime</span>  #end</p>
+                    <p style="margin:0;margin-right:30px; display:inline-block;" class="comma">$!medicine.getFrequency()</p>
+                    <p style="margin:0;margin-right:30px; display:inline-block;" class="comma">$!medicine.getQuantity()</p>
+                </div>
+            </li>
+			#end
+        </ul>
+
+        <div style=" margin-bottom:15px;">
+            <h4 style=" font-weight: bold; display: inline-block; vertical-align: top"><span style="display:inline-block; min-width:110px;">Lab Test:</span></h4>
+            <ol style="padding-left:15px;margin:0; display: inline-block;">
+                #foreach($investigation in $encounter_data.getInvestigations() )
+                <li>$!investigation</li>
+                #end
+            </ol>
+        </div>
+        <div style=" margin-bottom:15px;">
+            <h4 style="font-weight: bold; display: inline-block; vertical-align: top"><span style="display:inline-block; min-width:110px;">Description:</span></h4>
+            <p>$!encounter_data.getNotes()</p>
+        </div>
+
+    </section>
+
+    <div class="footer" style="border-top: 1px solid black;padding-top:10px;">
+        <p style="margin:0px; display: inline-block; width:50% white-space:nowrap;">Email Id: <span>$!encounter_data.getDoctor().getEmail()</span></p>
+        <p style="margin:0px;display: inline-block; width: 49%; text-align: right; white-space:nowrap;">Call: <span>$!encounter_data.getDoctor().getPhone()</span></p>
+    </div>
+
+</body>
+
+</html>

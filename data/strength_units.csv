@@ -1,0 +1,23 @@
+STRENGTH_UNIT_ID	STRENGTH_UNIT_CODE	STRENGTH_UNIT_DESC
+1	%	Percent
+31	AHFU	Antihemophilic factor unit
+61	GM	Gram
+91	GM/ML	Gram/milliliter
+121	IU	International unit
+151	IU/ML	International unit/milliliter
+181	MCG	Microgram
+211	MCG/ML	Microgram/milliliter
+241	MEQ	Milliequivalent
+271	MEQ/L	Milliequivalent/liter
+301	MEQ/ML	Milliequivalent/milliliter
+331	MG	Milligram
+361	MG/HR	Milligram/hour
+391	MG/ML	Milligram/milliliter
+421	MINIM	Minim
+451	MMOLE	Millimole
+481	MMOLE/ML	Millimole/milliliter
+511	MU	Million units
+541	SQ CM	Square centimeter
+571	U	Unit
+601	U/GM	Unit/gram
+631	U/ML	Unit/milliliter

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+	<springProfile name="default">
+		<property resource="application.properties" />
+	</springProfile>
+	<springProfile name="dev">
+		<property resource="application-dev.properties" />
+	</springProfile>
+	<springProfile name="qa">
+		<property resource="application-qa.properties" />
+	</springProfile>
+	<springProfile name="prod">
+		<property resource="application-prod.properties" />
+	</springProfile>
+	<appender name="SAVE-TO-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logging.file}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>${logging.file}.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<!-- keep 30 days' worth of history capped at 3GB total size -->
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>10MB</totalSizeCap>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-4relative [%thread] %-5level %logger{35} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+			<fieldNames>
+				<timestamp>app_time</timestamp>
+			</fieldNames>
+			<!-- This 'fixes' double quote problem for elastic -->
+			<jsonFactoryDecorator class="net.logstash.logback.decorate.CharacterEscapesJsonFactoryDecorator">
+				<escape>
+					<targetCharacterCode>34</targetCharacterCode>
+					<escapeSequence>'</escapeSequence>
+				</escape>
+			</jsonFactoryDecorator>
+			<!-- This shortens extremely long stacktraces. Not always needed -->
+			<throwableConverter
+				class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+				<maxDepthPerThrowable>30</maxDepthPerThrowable>
+				<maxLength>2048</maxLength>
+				<shortenedClassNameLength>20</shortenedClassNameLength>
+				<exclude>sun\.reflect\..*\.invoke.*</exclude>
+				<exclude>net\.sf\.cglib\.proxy\.MethodProxy\.invoke</exclude>
+				<rootCauseFirst>true</rootCauseFirst>
+				<inlineHash>true</inlineHash>
+			</throwableConverter>
+		</encoder>
+	</appender>
+	<root level="INFO">
+		<!-- Services testing locally to have readable logging -->
+		<springProfile name="default">
+			<appender-ref ref="CONSOLE" />
+			<appender-ref ref="SAVE-TO-FILE" />
+		</springProfile>
+		<!-- Running services in docker to have json logging -->
+		<springProfile name="dev,qa,prod">
+			<appender-ref ref="consoleAppender" />
+		</springProfile>
+	</root>
+</configuration>

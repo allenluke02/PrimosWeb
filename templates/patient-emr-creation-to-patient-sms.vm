@@ -1,0 +1,11 @@
+Dear $!gmc_utils.concatIgnoreNull(" ", $!patient.getFirstName(), $!patient.getLastName())
+
+You can access your prescription for consultation with Dr. $!gmc_utils.concatIgnoreNull(" ", $!doctor.getFirstName(), $!doctor.getLastName()), at Clinic $!clinic.getName().
+
+
+https://$!gmc_link_configuration.getFirebaseGMLink()/?link=http://www.$!gmc_link_configuration.getGmBaseURL()/Healthwallet?token=$!token_value&docName=$!gmc_utils.concatIgnoreNull(" ", $!doctor.getFirstName(), $!doctor.getLastName())&apn=$!gmc_link_configuration.getGmAPN()
+
+
+
+Regards,
+GoMedii

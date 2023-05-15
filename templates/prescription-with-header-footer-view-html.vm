@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+    body {
+        font-size: 18px;
+        padding: 15px 20px 10px;
+    }
+    .center{
+    	display:flex;
+    	align-item:center;
+    	justify-content:center;
+    }
+
+    p,
+    h4 {
+        font-size: 18px;
+        margin: 0px 0px 10px;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0px;
+        padding-left: 15px;
+    }
+
+    ul li {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .name {
+        font-size: 28px;
+        font-weight: bold;
+        margin: 0px 0px 10px;
+    }
+
+    .comma li:not(:last-child):after,
+    .comma span:not(:last-child):after {
+        display: inline-block;
+        content: ',';
+    }
+
+    .medicine-data {
+        display: inline-block;
+        margin: 0;
+        margin-right: 30px;
+    }
+
+    .patient-data {
+        display: inline-block;
+        font-weight: bold;
+    }
+
+    .rx {
+        font-size: 46px;
+        margin: 0;
+    }
+    ol{
+    	margin:0;
+    	padding-left:20px;
+    }
+
+    @media screen and (max-width:767px) {
+        body {
+            font-size: 10px;
+            padding: 10px;
+        }
+
+        .name {
+            font-size: 10px;
+        }
+
+        p,
+        h4 {
+            font-size: 10px;
+        }
+
+        ul li {
+            font-size: 10px;
+        }
+
+        .medicine-data {
+            margin-right: 15px;
+        }
+
+        .rx {
+            font-size: 25px;
+        }
+        ol{
+    	padding-left:10px;
+    	}
+    }
+</style>
+
+<body style="font-family:'Roboto'; margin:0px;">
+    <div style="align-items:flex-end; border-bottom: 1px solid black; display:flex; justify-content:space-between;">
+        <div>
+            <h3 class="name">$!gmc_utils.concatIgnoreNull(" ", $!encounter_data.getDoctor().getFirstName(), $!encounter_data.getDoctor().getLastName())</h3>
+            <p>$!address</p>
+            #if($encounter_data.getDoctor().getAddress().getCity().getName())
+            	<p>$!encounter_data.getDoctor().getAddress().getCity().getName(), Pin-$!encounter_data.getDoctor().getAddress().getZip()</p>
+        	#end
+        </div>
+        <h4 style="font-weight:bold;">Licence No: $!encounter_data.getDoctor().getPracticeLicense()</h4>
+    </div>
+    <section style="padding-top:10px;">
+
+        <div style="align-items:center; display:flex; justify-content:space-between; margin-bottom:15px; ">
+            <p style="
+            font-weight:bold;">Name : <span style="font-weight:normal;">$!gmc_utils.concatIgnoreNull(" ", $!encounter_data.getPatient().getFirstName(), $!encounter_data.getPatient().getLastName())</span></p>
+            <p style="font-weight:bold;">UHID : <span style="font-weight:normal;">$!encounter_data.getPatient().getUhid()</span></p>
+        </div>
+
+        <div style="align-items:center; display:flex; justify-content:space-between; margin-bottom:15px;">
+            <p style="font-weight:bold;">Age/Sex : <span style="font-weight:normal;">$!encounter_data.getPatient().getAge() / $encounter_data.getPatient().getGender()</span></p>
+            <p style="font-weight:bold;">Date: <span style="font-weight:normal;">$!encounter_date</span> </p>
+        </div>
+
+        <div style="margin-top:10px; margin-bottom:15px;">
+            <h1 class="rx">&#8478;</h1>
+        </div>
+
+        <div style="align-items:center; display:flex; justify-content:space-between; margin-bottom:15px; flex-wrap: wrap;">
+          #foreach($physicalExam in $encounter_data.getPhysicalExams())
+            	#if($physicalExam.getMetaPhysicalExam().getName())
+            <p style="font-weight:bold;">$!physicalExam.getMetaPhysicalExam().getName() : <span style="font-weight:normal;">$!physicalExam.getObservedValue()</span> $!physicalExam.getMetaPhysicalExam().getUnit()</p>
+            #end
+           #end  
+        </div>
+
+        <div style="align-items:flex-start; display:flex; justify-content:flex-start; margin-bottom:15px; ">
+           #foreach($complaint in $encounter_data.getComplaints() )
+         	#if($complaint)
+            		<h4 class="patient-data">Complaints:</h4>
+                        #break
+         	#end
+         #end
+         <ul class="comma">
+         #foreach($complaint in $encounter_data.getComplaints() )
+         	#if($complaint)
+                	<li style="display:inline-block">$!complaint</li>
+            #end
+      	#end
+      	</ul>
+            </ul>
+        </div>
+
+        <div style="align-items:flex-start; display:flex; justify-content:flex-start; margin-bottom:15px;">
+            #foreach($observation in $encounter_data.getObservations() )
+         	#if($observation)
+            	<h4 class="patient-data">Observations:</h4>
+        		#break
+        	#end
+        #end
+        <ul class="comma">
+         #foreach($observation in $encounter_data.getObservations() )
+         	#if($observation)
+                	<li style="display:inline-block">$!observation</li>
+            #end
+         #end
+         </ul>
+            </ul>
+        </div>
+
+    </section>
+
+    <section>
+    #foreach($medicine in $encounter_data.getMedicines() )
+        	#if($medicine)
+        <p class="patient-data">Medicines:</p>
+        <ul style="margin-bottom:25px; padding:0px;">
+            #foreach($medicine in $encounter_data.getMedicines() )
+            <li style=" margin-bottom:10px;">
+                <p style="font-weight:bold; margin-bottom: 5px;">$!medicine.getName() <span>..................$!medicine.getDuration()</span></p>
+                <div>
+                    <p class="comma medicine-data">#foreach($schdl in
+                        $medicine.getSchedule()) <span>$!schdl</span> #end</p>
+                    <p class="comma medicine-data">#foreach($etime in
+                        $medicine.getTime())<span>$etime</span> #end</p>
+                    <p class="comma medicine-data">$!medicine.getFrequency()</p>
+                    <p class="comma medicine-data">$!medicine.getQuantity()</p>
+                </div>
+            </li>
+            #end
+            #break
+        </ul>
+		#end
+	#end
+        <div style="margin-bottom:15px; ">
+            #foreach($investigation in $encounter_data.getInvestigations() )
+        	#if($investigation)
+            	<h4 class="patient-data">Lab Test:</h4>
+       			#break
+       		#end
+       	#end
+       
+       
+        #foreach($investigation in $encounter_data.getInvestigations() )
+        	#if($investigation)
+            	<ol>
+                	<li>$!foreach.count.$!investigation</li>
+            	</ol>
+           
+            #end
+       	#end
+        </div>
+        <div style="margin-bottom:15px;">
+       #if($!encounter_data.getNotes() && !$encounter_data.getNotes().empty)
+            <h4 class="patient-data">Description:</h4>
+            <p>$!encounter_data.getNotes()</p>
+        #end
+        </div>
+	#foreach($doc in $encounter_data.getDocument() )
+	#if($doc.getDocumentType().contains("PRESCRIPTION"))
+        
+        <div class="center" style="margin-bottom:10px;">
+        <img src=$doc.getURI() style="max-height: 100vh" alt="hdsghafdhgsd">
+        </div>
+    	
+	#end
+	#end
+    </section>
+    
+    <div class="footer" style="align-items:center; border-top: 1px solid black; display:flex; justify-content:space-between; padding-top:10px;">
+        <p style="margin:0px; white-space:nowrap;">Email Id: <span>$!encounter_data.getDoctor().getEmail()</span></p>
+        <p style="margin:0px; white-space:nowrap;">Call: <span>$!encounter_data.getDoctor().getPhone()</span></p>
+
+    </div>
+	
+</body>
+
+</html>

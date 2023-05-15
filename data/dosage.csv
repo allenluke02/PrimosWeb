@@ -1,0 +1,127 @@
+DOSAGE_ID	DOSAGE_CODE	DOSAGE_DESC
+1	AEPB	Aerosol Powder Breath Activated
+31	AERB	Aerosol Breath Activated
+61	AERO	Aerosol
+91	AERP	Aerosol Powder
+121	AERS	Aerosol Solution
+151	AMP	Ampule
+181	BAR	Bar
+211	BEAD	Beads
+241	BOTL	Bottle
+271	BUCC	Buccal System
+301	CAPS	Capsule
+331	CART	Cartridge
+361	CHEW	Tablet Chewable
+391	CONC	Concentrate
+421	CP12	Capsule Extended Release 12 Hour
+451	CP24	Capsule Extended Release 24 Hour
+481	CPCR	Capsule Extended Release
+511	CPDR	Capsule Delayed Release
+541	CPEC	EC Cap (Obsolete)
+571	CPEP	Capsule Delayed Release Particles
+601	CPSP	Capsule Sprinkle
+631	CREA	Cream
+661	CRYS	Crystals
+691	DCHE	Douche (Obsolete)
+721	DCHP	Douche Pow (Obsolete)
+751	DCHS	Douche Sol (Obsolete)
+781	DEVI	Device
+811	DISK	Disk
+841	DPRH	Diaphragm
+871	ELIX	Elixir
+901	ELU	EL Unit
+931	EMUL	Emulsion
+961	ENEM	Enema
+991	EXTR	Fluid Extract
+1021	FILM	Film
+1051	FLAK	Flakes
+1081	FOAM	Foam
+1111	GAS	Gas
+1141	GEL	Gel
+1171	GM	Gram
+1201	GRAN	Granules
+1231	GREF	Granules Effervescent
+1261	GUM	Gum
+1291	IMPL	Implant
+1321	INHA	Inhaler
+1351	INJ	Injectable
+1381	INST	Insert
+1411	IU	International Unit
+1441	IUD	Intrauterine Device
+1471	KIT	Kit
+1501	LEAV	Leaves
+1531	LIQD	Liquid
+1561	LOTN	Lotion
+1591	LOZG	Lozenge
+1621	LPOP	Lollipop
+1651	LQCR	Liquid Extended Release
+1681	MEQ	Milliequivalent
+1711	MISC	Miscellaneous
+1741	MIU	Million International Units
+1771	ML	Milliliter
+1801	MCG	Microgram
+1831	MCG/KG	Microgram per Kilogram
+1861	MG	Milligram
+1891	MGIV	Milligram Intravenously
+1921	MG/KG	Milligram per Kilogram
+1951	MU	Million Units
+1981	NEBU	Nebulization Solution
+2011	OCSY	Ocular System (Obsolete)
+2041	OIL	Oil
+2071	OINT	Ointment
+2101	PACK	Packet
+2131	PADS	Pad
+2161	PDEF	Powder Effervescent
+2191	PLLT	Pellet
+2221	POWD	Powder
+2251	PSTE	Paste
+2281	PT24	Patch 24 Hour
+2311	PT72	Patch 72 Hour
+2341	PTCH	Patch
+2371	PTTW	Patch Biweekly
+2401	PTWK	Patch Weekly
+2431	PUDG	Pudding
+2461	PUFF	Puffs
+2491	RING	Ring
+2521	SCOP	Scoopful
+2551	SHAM	Shampoo
+2581	SHEE	Sheet
+2611	SOLG	Gel Forming Solution
+2641	SOLN	Solution
+2671	SOLR	Solution Reconstituted
+2701	SPRT	Spirit
+2731	SPRY	Spray
+2761	STCK	Stick
+2791	STRP	Strip
+2821	SUBL	Tablet Sublingual
+2851	SUPP	Suppository
+2881	SUSP	Suspension
+2911	SUSR	Suspension Reconstituted
+2941	SWAB	Swab
+2971	SYRP	Syrup
+3001	TABS	Tablet
+3031	TAMP	Tampon
+3061	TAPE	Tape
+3091	TAR	Tar
+3121	TB12	Tablet Extended Release 12 Hour
+3151	TB24	Tablet Extended Release 24 Hour
+3181	TBCR	Tablet Extended Release
+3211	TBDP	Tablet Dispersible
+3241	TBDR	Tablet Delayed Release (Obsolete)
+3271	TBEC	Tablet Delayed Release
+3301	TBEF	Tablet Effervescent
+3331	TBSO	Tablet Soluble
+3361	TEST	Diagnostic Test
+3391	TINC	Tincture
+3421	TROC	Troche
+3451	TSP	Teaspoon
+3481	U	Units
+3511	U/KGIV	Units per Kilogram Intravenously
+3541	VIAL	Vial
+3571	WAFR	Wafer
+3601	WAX	Wax
+3631	WHIP	Whip (Obsolete)
+3661	XALU	XAL Units
+3691	MG/M2	Milligram/Square Meter
+3721	MCG/M2	Microgram/Square Meter
+3751	MGSQ	Milligram Subcutaneous
